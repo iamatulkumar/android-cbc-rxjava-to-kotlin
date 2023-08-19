@@ -13,7 +13,11 @@ class CompA: ViewModel() {
 
     fun invoke() {
         runBlocking {
+
 //------------- Flow event ----------------------
+            //fun flowEvent(): Flow<String> {
+            //    return flowOf("1", "2", "3", "4", "5")
+            //}
             flowEvent()
                 .flowOn(Dispatchers.Default)
                 .collect(::println)
@@ -27,6 +31,10 @@ class CompA: ViewModel() {
              */
 
 //------------- Fetch single value ----------------------
+
+//            suspend fun fetchSingleValue(car: Car): Car {
+//                return car
+//            }
             fetchSingleValue(car)
 
             /**
@@ -34,13 +42,21 @@ class CompA: ViewModel() {
              */
 
 //------------- Fetch single value, when pass null value----------------------
+//            suspend fun fetchSingleNullableValue(car: Car?): Car? {
+//                return car
+//            }
+
             fetchSingleNullableValue(null)
 
             /**
               null
              */
 
+
 //------------- Fetch single value, when pass non Null value----------------------
+//            suspend fun fetchSingleNullableValue(car: Car?): Car? {
+//                return car
+//            }
             fetchSingleNullableValue(car)
 
             /**
@@ -48,12 +64,16 @@ class CompA: ViewModel() {
              */
 
 //------------- Complete with no specific result----------------------
+//            suspend fun completeWithOutResult(car: Car) {
+//                println(car)
+//            }
             completeWithOutResult (car)
 
             /**
                 Car(name=Skoda)
              */
         }
+
     }
 
     // 0-n events, the backpressure is automatically taken care off
@@ -76,4 +96,76 @@ class CompA: ViewModel() {
     suspend fun completeWithOutResult(car: Car) {
         println(car)
     }
+
+
+
+    // Code challenge
+    suspend fun fetchCarValue(car: Car?): Car {
+        return car!!
+    }
+    // fetchCarValue(null)
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fun main() {
+    suspend fun fetchCarValue(car: Car?): Car {
+        return car!!
+    }
+
+    runBlocking {
+        fetchCarValue(null)
+    }
+
+    /**
+     * throw null pointer exception
+     */
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
