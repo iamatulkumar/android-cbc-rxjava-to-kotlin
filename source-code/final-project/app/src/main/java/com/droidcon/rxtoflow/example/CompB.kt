@@ -17,7 +17,14 @@ class CompB : ViewModel(){
     @RequiresApi(Build.VERSION_CODES.O)
     fun invoke(){
         runBlocking {
+
+
 //------------- Calling fetch insurance suspending function----------------------
+
+//            suspend fun fetchInsurance(insuranceId: String): Insurance {
+//                return InsuranceRespository.getInsurance(insuranceId) // calling fetchInsurance suspend function
+//            }
+
             val insuranceId = "ins_1"
             fetchInsurance(insuranceId)
 
@@ -25,7 +32,15 @@ class CompB : ViewModel(){
             Insurance(insuranceId=ins_1, startDate=2023-06-18T17:26:00.792641Z, endDate=2023-06-18T17:26:00.792651Z)
              */
 
+
 //------------- Calling get person suspending function and fetch their insurance detail-------------
+
+//            suspend fun getPersonInsurance(id: String): Insurance {
+//                val person = PersonRepository.getPerson(id) // fetch single person suspend function
+//                return fetchInsurance(person.insuranceId) // fetch single person insurance with insuranceId
+//            }
+
+
             val id = "DB2672C4-39AB-53E3-198C-85E17B777341"
             getPersonInsurance(id)
 
@@ -33,7 +48,17 @@ class CompB : ViewModel(){
             Insurance(insuranceId=ins_1, startDate=2023-06-18T17:29:20.186865Z, endDate=2023-06-18T17:29:20.186870Z)
              */
 
+
+
 //------------- Calling get persons suspending function, and fetch corresponding insurance details----------
+
+//            fun observePersonsInsurances(): Flow<Insurance> {
+//                return PersonRepository.getPersons() // fetch persons list
+//                    .map { person ->
+//                        fetchInsurance(person.insuranceId) // calling fetchInsurance suspend function
+//                    }
+//            }
+
             observePersonsInsurances()
                 .flowOn(Dispatchers.IO)
                 .collect(::println)
@@ -48,6 +73,7 @@ class CompB : ViewModel(){
         }
 
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun fetchInsurance(insuranceId: String): Insurance {

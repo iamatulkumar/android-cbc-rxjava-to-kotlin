@@ -15,17 +15,22 @@ class CompC: ViewModel() {
     fun invoke() {
 
         runBlocking {
+
+
 //----------------------------------------Exception in coroutine --------------------------------------------
             val jobRaiseException = GlobalScope.launch { // root coroutine with launch
                 println("Throwing exception from launch")
-                throw IndexOutOfBoundsException() // Will be printed to the console by Thread.defaultUncaughtExceptionHandler
+                throw RuntimeException() // Will be printed to the console by Thread.defaultUncaughtExceptionHandler
             }
             jobRaiseException.join()
 
             /**
                 Throwing exception from launch
-                Exception in thread "DefaultDispatcher-worker-2 @coroutine#2" java.lang.IndexOutOfBoundsException
+                Exception in thread "DefaultDispatcher-worker-2 @coroutine#2" java.lang.RuntimeException
              */
+
+
+
 
 //----------------------------------------Handle Exception in coroutine --------------------------------------------
         //----------------------------------------Try catch -----------------------------------
@@ -33,9 +38,9 @@ class CompC: ViewModel() {
             val launchWithTryCatch = GlobalScope.launch { // root coroutine with launch
                 println("Throwing exception from launch")
                 try {
-                    throw IndexOutOfBoundsException()
-                }catch (e: IndexOutOfBoundsException) {
-                    println("Caught IndexOutOfBoundsException")
+                    throw RuntimeException()
+                }catch (e: RuntimeException) {
+                    println("Caught RuntimeException")
                 }
 
             }
@@ -43,7 +48,7 @@ class CompC: ViewModel() {
 
             /**
                 Throwing exception from launch
-                Caught IndexOutOfBoundsException
+                Caught RuntimeException
              */
 
         //----------------------------------------CoroutineExceptionHandler ----------------------------------
@@ -52,14 +57,21 @@ class CompC: ViewModel() {
                 println("CoroutineExceptionHandler got $exception")
             }
             val jobCoroutineExceptionHandler = GlobalScope.launch(handler) { // root coroutine, running in GlobalScope
-                throw IndexOutOfBoundsException()
+                throw RuntimeException()
             }
 
             jobCoroutineExceptionHandler.join()
 
             /**
-                CoroutineExceptionHandler got java.lang.IndexOutOfBoundsException
+                CoroutineExceptionHandler got java.lang.RuntimeException
              */
+
+
+
+
+
+
+
 
 
 //----------------------------------------Exception in Flow (crash the application))--------------------------------------------
@@ -83,6 +95,13 @@ class CompC: ViewModel() {
             Exception in thread "main" java.lang.IllegalStateException: Value 3
              */
 
+
+
+
+
+
+
+
             //----------------------------------------try catch (Handle exception, no crash)--------------------------------------------
             try {
                 (1..5).asFlow()
@@ -103,9 +122,18 @@ class CompC: ViewModel() {
 
             /**
              collect : 1
-             collect : 4
+             collect : 2
              onCompletionCaught java.lang.IllegalStateException: Value 3
+             collect : kotlin.Unitcollect : 4
+             collect : 5
+             onCompletion
              */
+
+
+
+
+
+
 
 //----------------------------------------Flow catch builder block (Handle exception, no crash)---------------------------------
             (1..5).asFlow()
@@ -127,7 +155,7 @@ class CompC: ViewModel() {
 
             /**
             1
-            4
+            2
             onCompletion
             Caught java.lang.IllegalStateException: Value 3
              */

@@ -12,6 +12,7 @@ class CompA: ViewModel() {
     private val car = Car("Skoda")
 
     fun invoke() {
+
         runBlocking {
 
 //------------- Flow event ----------------------
@@ -41,6 +42,7 @@ class CompA: ViewModel() {
               Car(name=Skoda)
              */
 
+
 //------------- Fetch single value, when pass null value----------------------
 //            suspend fun fetchSingleNullableValue(car: Car?): Car? {
 //                return car
@@ -63,6 +65,7 @@ class CompA: ViewModel() {
              Car(name=Skoda)
              */
 
+
 //------------- Complete with no specific result----------------------
 //            suspend fun completeWithOutResult(car: Car) {
 //                println(car)
@@ -75,6 +78,8 @@ class CompA: ViewModel() {
         }
 
     }
+
+
 
     // 0-n events, the backpressure is automatically taken care off
     fun flowEvent(): Flow<String> {
@@ -99,6 +104,10 @@ class CompA: ViewModel() {
 
 
 
+
+
+
+
     // Code challenge
     suspend fun fetchCarValue(car: Car?): Car {
         return car!!
@@ -110,38 +119,7 @@ class CompA: ViewModel() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Code challenge solution
 fun main() {
     suspend fun fetchCarValue(car: Car?): Car {
         return car!!

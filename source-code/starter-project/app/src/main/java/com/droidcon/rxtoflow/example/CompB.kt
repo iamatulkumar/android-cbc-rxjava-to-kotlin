@@ -16,6 +16,11 @@ class CompB : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun invoke() {
+
+
+//        fun fetchInsurance(insuranceId: String): Single<Insurance> {
+//            return InsuranceRespository.getInsurance(insuranceId) // return single insurance value
+//        }
         val insuranceId = "ins_1"
         fetchInsurance(insuranceId)
             .subscribeOn(Schedulers.io())
@@ -25,8 +30,17 @@ class CompB : ViewModel() {
             }
             .subscribe()
         /**
-        Insurance(insuranceId=ins_1, startDate=2023-06-18T17:26:00.792641Z, endDate=2023-06-18T17:26:00.792651Z)
+        Insurance(insuranceId=ins_1, startDate=2023-06-18T17:26:00.792641Z,
+                endDate=2023-06-18T17:26:00.792651Z)
          */
+
+
+//        fun getPersonInsurance(id: String): Single<Insurance> {
+//            return PersonRepository.getPerson(id) // fetch Single Person value
+//                .flatMap { person ->
+//                    fetchInsurance(person.insuranceId) // return single insurance value
+//                }
+//        }
 
         val id = "DB2672C4-39AB-53E3-198C-85E17B777341"
         getPersonInsurance(id)
@@ -37,8 +51,17 @@ class CompB : ViewModel() {
             }
             .subscribe()
         /**
-        Insurance(insuranceId=ins_1, startDate=2023-06-18T17:29:20.186865Z, endDate=2023-06-18T17:29:20.186870Z)
+        Insurance(insuranceId=ins_1, startDate=2023-06-18T17:29:20.186865Z,
+            endDate=2023-06-18T17:29:20.186870Z)
          */
+
+//        fun observePersonsInsurances(): Observable<Insurance> {
+//            return  PersonRepository.getPersons() // fetch all person list
+//                .flatMap { person ->
+//                    fetchInsurance(person.insuranceId) // fetch insurance value
+//                        .toObservable() // flatMap expect an Observable
+//                } // return all person's insurance value
+//        }
 
         observePersonsInsurances()
             .subscribeOn(Schedulers.io())
@@ -55,6 +78,8 @@ class CompB : ViewModel() {
         Insurance(insuranceId=ins_5, startDate=2023-06-19T05:34:50.876743Z, endDate=2023-06-19T05:34:50.876744Z)
          */
     }
+
+
 
     // return person insurance
     @RequiresApi(Build.VERSION_CODES.O)

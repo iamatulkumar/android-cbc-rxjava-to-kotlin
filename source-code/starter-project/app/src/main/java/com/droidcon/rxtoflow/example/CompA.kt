@@ -16,6 +16,12 @@ class CompA: ViewModel() {
     private val car = Car("HondaCity")
 
     fun invoke() {
+
+
+//        private fun observeEvents(): Observable<String> {
+//            return Observable.just("1", "2", "3", "4", "5")
+//        }
+
         Log.d("onStart :", "observeEvents")
         observeEvents()
             .observeOn(Schedulers.io())
@@ -33,6 +39,11 @@ class CompA: ViewModel() {
             onNext : 5
             onComplete Completed
              */
+
+
+//        private fun flowableEvents(): Flowable<String> {
+//            return Flowable.just("1", "2", "3", "4", "5")
+//        }
 
         Log.d("onStart :", "flowableEvents")
         flowableEvents()
@@ -52,6 +63,11 @@ class CompA: ViewModel() {
         onComplete Completed
          */
 
+
+//        private fun singleEvent(car: Car): Single<Car> {
+//            return Single.just(car)
+//        }
+
         Log.d("onStart :", "singleEvent")
         singleEvent(car)
             .observeOn(Schedulers.io())
@@ -61,6 +77,14 @@ class CompA: ViewModel() {
         /**
          Car(name=HondaCity)
          */
+
+
+//        private fun maybeEvent(car: Car?): Maybe<Car> {
+//            return car?.let {
+//                Maybe.just(car)
+//            }?:Maybe
+//                .empty<Car>()
+//        }
 
         Log.d("onStart :", "maybeEvent")
         maybeEvent(car)
@@ -75,6 +99,13 @@ class CompA: ViewModel() {
         onSuccess : Car(name=HondaCity)
          */
 
+
+//        private fun completableEvent(car: Car): Completable {
+//            return Completable
+//                .fromAction {
+//                    println("$car")
+//                }
+//        }
         Log.d("onStart :", "completableEvent")
         completableEvent(car)
             .observeOn(Schedulers.io())

@@ -12,6 +12,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class CompC: ViewModel() {
 
     fun invoke(){
+
+
+
 //----------------------------------------onErrorResumeWith--------------------------------------------
         Observable.just(1, 2, 3, 4)
             .subscribeOn(Schedulers.io())
@@ -41,6 +44,7 @@ class CompC: ViewModel() {
             onNext : 1
             onErrorResumeWith : 1
          */
+
 
 //----------------------------------------onErrorResumeNext--------------------------------------------
         Observable.just(1, 2, 3, 4)
@@ -73,6 +77,7 @@ class CompC: ViewModel() {
             onErrorResumeNext: Its a NPE
          */
 
+
 //----------------------------------------onErrorComplete--------------------------------------------
         Observable.just(1, 2, 3, 4)
             .subscribeOn(Schedulers.io())
@@ -103,6 +108,8 @@ class CompC: ViewModel() {
         onErrorComplete: Exception Occurred
         onComplete: Completed
          */
+
+
 
 //----------------------------------------onErrorReturn--------------------------------------------
         Observable.just(1, 2, 3, 4)
@@ -135,6 +142,8 @@ class CompC: ViewModel() {
             onNext: 5
             onComplete: Completed
          */
+
+
 
 //----------------------------------------onErrorReturnItem--------------------------------------------
         Observable.just(1, 2, 3, 4)
